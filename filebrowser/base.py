@@ -199,7 +199,7 @@ class FileListing():
 
 
 @python_2_unicode_compatible
-class FileObject():
+class FileObject(object):
     """
     The FileObject represents a file (or directory) on the server.
 

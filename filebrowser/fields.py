@@ -82,7 +82,7 @@ class FileBrowseFormField(forms.CharField):
         return value
 
 
-class FileBrowseField(with_metaclass(models.SubfieldBase, CharField)):
+class FileBrowseField(with_metaclass(CharField)):
     description = "FileBrowseField"
 
     def __init__(self, *args, **kwargs):
@@ -207,7 +207,6 @@ class FileBrowseUploadField(CharField):
     """
 
     description = "FileBrowseUploadField"
-    __metaclass__ = models.SubfieldBase
 
     def __init__(self, *args, **kwargs):
         self.site = kwargs.pop('site', site)

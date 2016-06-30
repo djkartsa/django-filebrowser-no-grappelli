@@ -3,11 +3,9 @@ import os
 
 from django import forms
 from django.core import urlresolvers
-from django.db import models
 from django.db.models.fields import CharField
 from django.forms.widgets import Input
 from django.template.loader import render_to_string
-from django.utils.six import with_metaclass
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.templatetags.admin_static import static
 
@@ -82,7 +80,7 @@ class FileBrowseFormField(forms.CharField):
         return value
 
 
-class FileBrowseField(with_metaclass(CharField)):
+class FileBrowseField(CharField):
     description = "FileBrowseField"
 
     def __init__(self, *args, **kwargs):

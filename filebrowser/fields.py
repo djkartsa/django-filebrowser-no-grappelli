@@ -95,6 +95,11 @@ class FileBrowseField(CharField):
             return value
         return FileObject(value, site=self.site)
 
+    def from_db_value(self, value, expression, connection, context):
+        if not value:
+            return None
+        return FileObject(value, site=self.site)
+
     def get_prep_value(self, value):
         if not value:
             return value

@@ -91,19 +91,21 @@ class FileBrowseField(CharField):
         return super(FileBrowseField, self).__init__(*args, **kwargs)
 
     def to_python(self, value):
-        if not value or isinstance(value, FileObject):
+        if value is None or isinstance(value, FileObject):
             return value
         return FileObject(value, site=self.site)
 
     def from_db_value(self, value, expression, connection, context):
-        if not value:
-            return None
+        if value is None or isinstance(value, FileObject):
+            return value
         return FileObject(value, site=self.site)
 
     def get_prep_value(self, value):
         if not value:
             return value
-        return value.path
+        if isinstance(value, FileObject):
+            return value.path
+        return FileObject(value, site=self.site).path
 
     def value_to_string(self, obj):
         value = self._get_val_from_obj(obj)

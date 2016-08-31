@@ -101,7 +101,7 @@ class FileBrowseField(CharField):
         return FileObject(value, site=self.site)
 
     def get_prep_value(self, value):
-        if not value:
+        if value is None or value == "":
             return value
         if isinstance(value, FileObject):
             return value.path
